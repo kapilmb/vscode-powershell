@@ -20,6 +20,7 @@ import { registerOpenInISECommand } from './features/OpenInISE';
 import { registerPowerShellFindModuleCommand } from './features/PowerShellFindModule';
 import { registerConsoleCommands } from './features/Console';
 import { registerExtensionCommands } from './features/ExtensionCommands';
+import { registerCodeActionCommands } from './features/CodeActions';
 
 import net = require('net');
 
@@ -317,6 +318,7 @@ function registerFeatures() {
     registerOpenInISECommand();
     registerPowerShellFindModuleCommand(languageServerClient);
     registerExtensionCommands(languageServerClient);
+    registerCodeActionCommands(languageServerClient);
 }
 
 export function deactivate(): void {
