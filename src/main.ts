@@ -12,6 +12,7 @@ import { SessionManager } from './session';
 import { PowerShellLanguageId } from './utils';
 import { ConsoleFeature } from './features/Console';
 import { OpenInISEFeature } from './features/OpenInISE';
+import { NewProjectFeature } from './features/NewProject';
 import { ExpandAliasFeature } from './features/ExpandAlias';
 import { ShowHelpFeature } from './features/ShowOnlineHelp';
 import { FindModuleFeature } from './features/PowerShellFindModule';
@@ -69,6 +70,12 @@ export function activate(context: vscode.ExtensionContext): void {
     // TODO: Pull level from settings
     logger = new Logger(LogLevel.Verbose);
 
+    sessionManager =
+        new SessionManager(
+            requiredEditorServicesVersion,
+            logger,
+            extensionFeatures);
+
     // Create features
     extensionFeatures = [
         new ConsoleFeature(),
@@ -76,15 +83,11 @@ export function activate(context: vscode.ExtensionContext): void {
         new ExpandAliasFeature(),
         new ShowHelpFeature(),
         new FindModuleFeature(),
-        new ExtensionCommandsFeature()
+        new ExtensionCommandsFeature(),
+        new NewProjectFeature((doneFunc) => { doneFunc(true); })
     ];
 
-    sessionManager =
-        new SessionManager(
-            requiredEditorServicesVersion,
-            logger,
-            extensionFeatures);
-
+    // Start the session
     sessionManager.start();
 }
 

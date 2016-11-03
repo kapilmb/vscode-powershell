@@ -26,7 +26,8 @@
     },
     "main": "./out/main",
     "activationEvents": [
-        "onLanguage:powershell"
+        "onLanguage:powershell",
+        "onCommand:PowerShell.NewProject"
     ],
     "dependencies": {
         "vscode-languageclient": "1.3.1"
@@ -117,6 +118,11 @@
             {
                 "command": "PowerShell.ShowAdditionalCommands",
                 "title": "Show additional commands from PowerShell modules",
+                "category": "PowerShell"
+            },
+            {
+                "command": "PowerShell.NewProject",
+                "title": "New PowerShell Project",
                 "category": "PowerShell"
             }
         ],
