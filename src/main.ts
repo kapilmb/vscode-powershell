@@ -64,8 +64,13 @@ export function activate(context: vscode.ExtensionContext): void {
                 ['(', ')'],
             ],
 
-			onEnterRules: [
-			]
+            onEnterRules: [
+                {
+                    // e.g.  # ...|
+                    beforeText: /^\s*\#[^\#]*$/,
+                    action: { indentAction: vscode.IndentAction.None, appendText: '# ' }
+                },
+            ]
         });
 
     // Create the logger
